@@ -1,0 +1,22 @@
+{
+  "name": "@livingdocs/sdk",
+  "version": "0.0.0-placeholder",
+  "description": "Livingdocs SDK",
+  "author": "upfrontIO",
+  "keywords": [
+    "livingdocs",
+    "sdk",
+    "client"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@livingdocs/framework": "latest",
+    "coffee-script": "^1.12.7"
+  },
+  "devDependencies": {
+    "eslint": "^4.7.2"
+  }
+}
