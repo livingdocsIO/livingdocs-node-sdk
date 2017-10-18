@@ -14,7 +14,9 @@
   },
   "dependencies": {
     "@livingdocs/framework": "latest",
-    "coffee-script": "^1.12.7"
+    "coffee-script": "^1.12.7",
+    "node-fetch": "^1.7.3",
+    "qs": "^6.5.1"
   },
   "devDependencies": {
     "eslint": "^4.7.2"

@@ -1,16 +1,29 @@
 require('coffee-script/register')
-const framework = require('@livingdocs/framework')
+const Client = require('./client')
 
 module.exports = {
-  loadDesign,
-  loadDocument
+  Client,
+  loadDocument,
+  filterComponents,
+  render
 }
 
-function loadDesign (design) {
-  this.design = design
+function loadDocument ({content, design, resolveReferences}) {
+  const framework = require('@livingdocs/framework')
   framework.design.load(design)
+  const document = framework.createLivingdoc({content, design})
+  // TODO: resolve references (DI)
+  return document
 }
 
-function loadDocument (content, design = this.design) {
-  return framework.createLivingdoc({content, design})
+function filterComponents (document, filter) {
+  if (typeof filter !== 'function') return document
+  document.componentTree.each((component) => {
+    if (!filter(component)) component.remove()
+  })
+  return document
+}
+
+function render ({document}) {
+  return document.toHtml()
 }
