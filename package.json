@@ -15,6 +15,7 @@
   "dependencies": {
     "@livingdocs/framework": "latest",
     "coffee-script": "^1.12.7",
+    "lodash": "^4.17.4",
     "node-fetch": "^1.7.3",
     "qs": "^6.5.1"
   },
