@@ -15,19 +15,16 @@ const document = {
     return doc
   },
 
-  async resolveIncludes (doc, includeResolver) {
-    const accumulator = []
+  getIncludes (doc) {
+    const accumulator = {}
     doc.componentTree.each((component) => {
       component.directives.eachInclude((includeDirective) => {
-        accumulator.push(includeDirective)
+        const includeContent = includeDirective.getContent()
+        const serviceName = includeContent.service
+        accumulator[serviceName] = [...(accumulator[serviceName] || []), includeDirective]
       })
     })
-    for (const include of accumulator) {
-      const includeContent = include.getContent()
-      const includeHtml = await includeResolver(includeContent)
-      include.resolve(includeHtml)
-    }
-    return doc
+    return accumulator
   },
 
   render (doc) {
