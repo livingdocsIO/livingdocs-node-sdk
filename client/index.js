@@ -6,8 +6,8 @@ module.exports = class Client {
     this.service = createService(validatedConfig)
   }
 
-  async getPublication (options) {
-    return await this.service.latestPublication(options)
+  async getPublication (documentId) {
+    return await this.service.latestPublication(documentId)
   }
 
   async getPublications (options) {
@@ -15,6 +15,14 @@ module.exports = class Client {
     const optionsWithDefaults = {limit, ...options}
 
     return await this.service.latestPublications(optionsWithDefaults)
+  }
+
+  async getDocumentList (listId) {
+    return await this.service.documentList(listId)
+  }
+
+  async getDocumentLists (options) {
+    return await this.service.documentLists(options)
   }
 }
 

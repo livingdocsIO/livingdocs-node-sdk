@@ -3,14 +3,25 @@ const fetch = require('node-fetch')
 
 module.exports = (config) => {
   return {
-    latestPublication: async (options) => {
-      const path = `documents/${options.documentId}/latestPublication`
-      return await request(path, config)
-    },
-
     latestPublications: async (options) => {
       const queryString = getQueryString(options)
       const path = `documents/latestPublications${queryString}`
+      return await request(path, config)
+    },
+
+    latestPublication: async (id) => {
+      const path = `documents/${id}/latestPublication`
+      return await request(path, config)
+    },
+
+    documentLists: async (options) => {
+      const queryString = getQueryString(options)
+      const path = `document-lists${queryString}`
+      return await request(path, config)
+    },
+
+    documentList: async (id) => {
+      const path = `document-lists/${id}`
       return await request(path, config)
     }
   }
