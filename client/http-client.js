@@ -9,8 +9,8 @@ module.exports = (config) => {
       return await request(path, config)
     },
 
-    latestPublication: async (id) => {
-      const path = `documents/${id}/latestPublication`
+    latestPublication: async (options) => {
+      const path = `documents/${options.documentId}/latestPublication`
       return await request(path, config)
     },
 
@@ -20,8 +20,8 @@ module.exports = (config) => {
       return await request(path, config)
     },
 
-    documentList: async (id) => {
-      const path = `document-lists/${id}`
+    documentList: async (options) => {
+      const path = `document-lists/${options.listId}`
       return await request(path, config)
     }
   }

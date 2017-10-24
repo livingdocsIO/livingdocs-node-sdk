@@ -6,10 +6,6 @@ module.exports = class Client {
     this.service = createService(validatedConfig)
   }
 
-  async getPublication (documentId) {
-    return await this.service.latestPublication(documentId)
-  }
-
   async getPublications (options) {
     const limit = 10
     const optionsWithDefaults = {limit, ...options}
@@ -17,12 +13,18 @@ module.exports = class Client {
     return await this.service.latestPublications(optionsWithDefaults)
   }
 
-  async getDocumentList (listId) {
-    return await this.service.documentList(listId)
+  async getPublication (options = {}) {
+    if (!options.documentId) throw new Error('required param "documentId" missing')
+    return await this.service.latestPublication(options)
   }
 
   async getDocumentLists (options) {
     return await this.service.documentLists(options)
+  }
+
+  async getDocumentList (options = {}) {
+    if (!options.listId) throw new Error('required param "listId" missing')
+    return await this.service.documentList(options)
   }
 }
 
