@@ -26,6 +26,10 @@ module.exports = class Client {
     if (!options.listId) throw new Error('required param "listId" missing')
     return await this.service.documentList(options)
   }
+
+  async getMenus (options = {}) {
+    return await this.service.menus(options)
+  }
 }
 
 function validateConfig (config) {
