@@ -14,17 +14,6 @@ module.exports = (config) => {
       return await request(path, config)
     },
 
-    documentLists: async (options) => {
-      const queryString = getQueryString(options)
-      const path = `document-lists${queryString}`
-      return await request(path, config)
-    },
-
-    documentList: async (options) => {
-      const path = `document-lists/${options.listId}`
-      return await request(path, config)
-    },
-
     menus: async (options) => {
       const queryString = getQueryString(options)
       const path = `menus/web${queryString}`
