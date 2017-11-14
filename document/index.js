@@ -27,6 +27,12 @@ const document = {
     return accumulator
   },
 
+  renderComponent (component) {
+    const framework = require('@livingdocs/framework')
+    const componentRenderer = framework.Livingdoc.api.ComponentRenderer
+    return componentRenderer.renderComponent(component)
+  },
+
   render (doc) {
     return doc.render()
   }
