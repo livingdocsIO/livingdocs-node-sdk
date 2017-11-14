@@ -18,15 +18,6 @@ module.exports = class Client {
     return await this.service.latestPublication(options)
   }
 
-  async getDocumentLists (options) {
-    return await this.service.documentLists(options)
-  }
-
-  async getDocumentList (options = {}) {
-    if (!options.listId) throw new Error('required param "listId" missing')
-    return await this.service.documentList(options)
-  }
-
   async getMenus (options = {}) {
     return await this.service.menus(options)
   }
