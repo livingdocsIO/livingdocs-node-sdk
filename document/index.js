@@ -4,6 +4,7 @@ const utils = require('./utils')
 const document = {
   create ({design, content}) {
     const framework = require('@livingdocs/framework')
+    framework.design.resetCache()
     framework.design.load(design)
 
     const doc = framework.create({content, design})
