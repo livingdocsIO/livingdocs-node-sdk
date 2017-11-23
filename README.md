@@ -1,9 +1,6 @@
 # livingdocs-sdk
 The official JavaScript client for Livingdocs.
 
-## Linking the Framework
-The current implementation assumes that you have `npm link`ed https://github.com/upfrontIO/livingdocs-framework/pull/161 as `@livingdocs/framework`
-
 ## SDK API
 ```js
 const liSDK = require('@livingdocs/sdk')
@@ -36,6 +33,13 @@ const visitedDocument = liSDK.document.visit(document, filter, visitor)
 const includes = liSDK.document.getIncludes(document)
 
 /**
+ * @function document.renderComponent Renders a specific component to html.
+ * @param component: Component
+ * @return string
+ */
+const html = liSDK.document.renderComponent(component)
+
+/**
  * @function document.render Renders a document to html.
  * @param document: Livingdoc
  * @return string
@@ -52,6 +56,13 @@ const liClient = new liSDK.Client({
 })
 
 /**
+ * @function getMenus Fetches menus with optional filters.
+ * @param filters?: { handle?: string } handle - The given menu handle.
+ * @return Menu[]
+ */
+const [menu] = await liClient.getMenus({handle: 'main'})
+
+/**
  * @function getPublications Fetches latest publications with optional filters.
  * @param filters?: { homepage?: boolean, limit?: number = 10 }
  * @return Publication[]
@@ -64,25 +75,4 @@ const homepagePublication = await liClient.getPublications({homepage: true})
  * @return Publication
  */
 const publication = await liClient.getPublication({documentId})
-
-/**
- * @function getDocumentLists Fetches document lists with optional filters.
- * @param filters?: { id?: number[],  sort?: 'id' | 'name' | 'created_at' | 'updated_at' }
- * @return DocumentList[]
- */
-const documentLists = await liClient.getDocumentLists({id: [1, 2, 3], sort: 'updated_at'})
-
-/**
- * @function getDocumentList Fetches a document list by id.
- * @param options: { listId: number, limit?: number } limit - The max count of included entries in the list.
- * @return DocumentList
- */
-const documentList = await liClient.getDocumentList({listId: 1, limit: 4})
-
-/**
- * @function getMenus Fetches menus with optional filters.
- * @param filters?: { handle?: string } handle - The given menu handle.
- * @return Menu[]
- */
-const [menu] = await liClient.getMenus({handle: 'main'})
 ```
