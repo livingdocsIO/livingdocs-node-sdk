@@ -80,20 +80,22 @@ const publication = await liClient.getPublication({documentId})
 ## Example: Rendering a Document
 
 ```javascript
-const liSDK = require('@livingdocs/sdk')
-
-const liClient = new liSDK.Client({
+const config = {
   url: 'http://localhost:3001',
   accessToken: 'my-awesome-token'
-})
+}
+
+const liSDK = require('@livingdocs/sdk')
+const liClient = new liSDK.Client(config)
 
 // fetch document from server
 const publication = await liClient.getPublication({documentId})
 const content = document.content
 
 // fetch design
-const designUrl = `http://localhost:3001/designs/${design.name}/${design.version}`
-const design = await require('node-fetch')(designUrl)
+const designUrl = `${config.url}/designs/${design.name}/${design.version}`
+const designResponse = await require('node-fetch')(designUrl)
+const design = await designResponse.json()
 
 // create document and render it
 const document = liSDK.document.create({design, content})
