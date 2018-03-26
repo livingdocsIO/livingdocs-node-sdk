@@ -77,7 +77,9 @@ const homepagePublication = await liClient.getPublications({homepage: true})
 const publication = await liClient.getPublication({documentId})
 ```
 
-## Example: Rendering a Document
+## Examples
+
+### Rendering a Document
 
 ```javascript
 const config = {
