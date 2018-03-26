@@ -76,3 +76,26 @@ const homepagePublication = await liClient.getPublications({homepage: true})
  */
 const publication = await liClient.getPublication({documentId})
 ```
+
+## Example: Rendering a Document
+
+```javascript
+const liSDK = require('@livingdocs/sdk')
+
+const liClient = new liSDK.Client({
+  url: 'http://localhost:3001',
+  accessToken: 'my-awesome-token'
+})
+
+// fetch document from server
+const publication = await liClient.getPublication({documentId})
+const content = document.content
+
+// fetch design
+const designUrl = `http://localhost:3001/designs/${design.name}/${design.version}`
+const design = await require('node-fetch')(designUrl)
+
+// create document and render it
+const document = liSDK.document.create({design, content})
+const html = document.render()
+```
