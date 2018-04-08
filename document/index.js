@@ -2,10 +2,11 @@ require('coffee-script/register')
 const utils = require('./utils')
 
 const document = {
-  create ({design, content}) {
+  create ({design, content, config}) {
     const framework = require('@livingdocs/framework')
     framework.design.resetCache()
     framework.design.load(design)
+    framework.config(config)
 
     const doc = framework.create({content, design})
     return doc
