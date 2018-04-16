@@ -67,7 +67,7 @@ const [menu] = await liClient.getMenus({handle: 'main'})
  * @param filters?: { homepage?: boolean, limit?: number = 10 }
  * @return Publication[]
  */
-const homepagePublication = await liClient.getPublications({homepage: true})
+const [homepagePublication] = await liClient.getPublications({homepage: true, limit: 1})
 
 /**
  * @function getPublication Fetches a publication by id.
