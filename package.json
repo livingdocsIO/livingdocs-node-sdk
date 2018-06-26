@@ -22,5 +22,17 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "eslint": "^4.7.2"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/upfrontIO/livingdocs-sdk.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/upfrontIO/livingdocs-sdk/issues"
+  },
+  "homepage": "https://github.com/upfrontIO/livingdocs-sdk#readme"
 }
