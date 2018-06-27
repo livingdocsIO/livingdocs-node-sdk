@@ -1,12 +1,13 @@
 {
-  "name": "@livingdocs/sdk",
-  "version": "0.0.4",
+  "name": "@livingdocs/node-sdk",
+  "version": "0.1.0",
   "description": "Livingdocs SDK",
-  "author": "upfrontIO",
+  "author": "upfrontIO <dev@livingdocs.io>",
   "keywords": [
     "livingdocs",
     "sdk",
-    "client"
+    "client",
+    "node"
   ],
   "main": "index.js",
   "scripts": {
