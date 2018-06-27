@@ -1,9 +1,8 @@
-require('coffee-script/register')
 const utils = require('./utils')
 
 const document = {
   create ({design, content, config}) {
-    const framework = require('@livingdocs/framework')
+    const framework = require('../framework/livingdocs-framework')
     framework.design.resetCache()
     framework.design.load(design)
     framework.config(config)
@@ -30,7 +29,7 @@ const document = {
   },
 
   renderComponent (component) {
-    const framework = require('@livingdocs/framework')
+    const framework = require('../framework/livingdocs-framework')
     const componentRenderer = framework.Livingdoc.api.ComponentRenderer
     return componentRenderer.renderComponent(component)
   },

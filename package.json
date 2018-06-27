@@ -13,8 +13,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@livingdocs/framework": "latest",
-    "coffee-script": "^1.12.7",
     "lodash": "^4.17.4",
     "node-fetch": "^1.7.3",
     "qs": "^6.5.1"
@@ -23,16 +21,6 @@
     "chai": "^4.1.2",
     "eslint": "^4.7.2"
   },
-  "directories": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/upfrontIO/livingdocs-sdk.git"
-  },
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/upfrontIO/livingdocs-sdk/issues"
-  },
   "homepage": "https://github.com/upfrontIO/livingdocs-sdk#readme"
 }
