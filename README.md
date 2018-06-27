@@ -1,5 +1,6 @@
 # livingdocs-sdk
 The official Node.js client for Livingdocs.
+This is a low-level library. If you're looking for a full-fledged use case, consider taking a look at our [magazine example](https://github.com/upfrontIO/magazine-example)
 
 ## Getting started
 
@@ -103,7 +104,7 @@ Check out the Client API reference documentation below for the respective method
 Currently, you can not use your own design in the Livingdocs editor.
 But you can have a local copy of our magazine design and adjust the HTML / CSS for the rendering. This means that you will write in the Livingdocs editor in our prebuilt design but render to your own custom design using the SDK.
 
-Check out the Livingdocs magazine example frontend (TODO link) on how to achieve this.
+Check out the Livingdocs [magazine example frontend](https://github.com/upfrontIO/magazine-example) on how to achieve this.
 
 Supporting custom designs in the Livingdocs editor is on our roadmap.
 
