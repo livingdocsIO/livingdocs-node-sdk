@@ -8,7 +8,7 @@ If not, create one now.
 
 1. Install the SDK
 
-`npm install @livingdocs/sdk`
+`npm install @livingdocs/node-sdk`
 
 2. Get your access token from `edit.livingdocs.io` by navigating to `Access Management` -> `Api Tokens`
 
@@ -18,7 +18,7 @@ If not, create one now.
 3. Get a document
 
 ```
-const liSDK = require('@livingdocs/sdk')
+const liSDK = require('@livingdocs/node-sdk')
 const liClient = new liSDK.Client({
   url: 'https://server.livingdocs.io',
   accessToken: 'my-awesome-token'
@@ -68,7 +68,7 @@ This loads our magazine example design from the Livingdocs server. You can of co
 
 6. Create a living document
 ```
-const liSDK = require('@livingdocs/sdk')
+const liSDK = require('@livingdocs/node-sdk')
 const livingdoc = liSDK.document.create({
   design,
   content: contentType === 'author' ? [] : publication.content,
@@ -79,13 +79,13 @@ const livingdoc = liSDK.document.create({
 
 7. Render a living document to Html
 ```
-const liSDK = require('@livingdocs/sdk')
+const liSDK = require('@livingdocs/node-sdk')
 liSDK.document.render(livingdoc)
 ```
 
 8. .. or render single components
 ```
-const liSDK = require('@livingdocs/sdk')
+const liSDK = require('@livingdocs/node-sdk')
 liSDK.document.renderComponent(livingdoc.componentTree.first())
 ```
 
@@ -115,7 +115,7 @@ Check out the livingdoc reference documentation for an intro to the livingdoc AP
 
 ## API reference documentation
 ```js
-const liSDK = require('@livingdocs/sdk')
+const liSDK = require('@livingdocs/node-sdk')
 ```
 
 ### Document API
@@ -576,7 +576,7 @@ const config = {
   accessToken: 'my-awesome-token'
 }
 
-const liSDK = require('@livingdocs/sdk')
+const liSDK = require('@livingdocs/node-sdk')
 const liClient = new liSDK.Client(config)
 
 // fetch document from server
