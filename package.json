@@ -2,7 +2,7 @@
   "name": "@livingdocs/node-sdk",
   "version": "0.1.0",
   "description": "Livingdocs SDK",
-  "author": "upfrontIO <dev@livingdocs.io>",
+  "author": "Livingdocs <dev@livingdocs.io>",
   "keywords": [
     "livingdocs",
     "sdk",
@@ -23,5 +23,5 @@
     "eslint": "^4.7.2"
   },
   "license": "MIT",
-  "homepage": "https://github.com/upfrontIO/livingdocs-sdk#readme"
+  "homepage": "https://github.com/livingdocsIO/livingdocs-sdk#readme"
 }
