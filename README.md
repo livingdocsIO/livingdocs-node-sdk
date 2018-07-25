@@ -7,6 +7,8 @@ This is a low-level library. If you're looking for a full-fledged use case, cons
 We assume, you already have an account on https://edit.livingdocs.io
 If not, create one now.
 
+You can also check the full example in runkit, but make sure to replace the API token with your own: https://runkit.com/gabrielhase/livingdocs-minimal-example
+
 1. Install the SDK
 
 `npm install @livingdocs/node-sdk`
@@ -61,8 +63,8 @@ This configures Livindocs' image service (the same that is used on edit.livingdo
 
 5. Use a design
 ```
-const request = require('request')
-const design = request.get('https://api.livingdocs.io/designs/living-times/0.0.11')
+const axios = require('axios')
+const designRes = await request.get('https://api.livingdocs.io/designs/living-times/0.0.11')
 ```
 
 This loads our magazine example design from the Livingdocs server. You can of course also use your own local design.
@@ -71,8 +73,8 @@ This loads our magazine example design from the Livingdocs server. You can of co
 ```
 const liSDK = require('@livingdocs/node-sdk')
 const livingdoc = liSDK.document.create({
-  design,
-  content: contentType === 'author' ? [] : publication.content,
+  design: designRes.data,
+  content: publication.content,
   config
 })
 ```
