@@ -36,7 +36,7 @@ We assume that you used the standard signup flow. This would give you a document
 
 ```
 const config = {
-  imageService: {
+  imageServices: {
     imgix: {
       host: 'https://livingdocs.imgix.net',
       preferWebp: true,
