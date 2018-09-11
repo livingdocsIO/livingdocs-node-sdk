@@ -16,7 +16,7 @@ module.exports = (config) => {
 
     async menus (options) {
       const queryString = getQueryString(options)
-      const path = `menus/web${queryString}`
+      const path = `menus${queryString}`
       return request(path, config)
     }
   }
