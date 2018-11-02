@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Livingdocs SDK",
   "author": "Livingdocs <dev@livingdocs.io>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/livingdocsIO/livingdocs-node-sdk.git"
+  },
   "keywords": [
     "livingdocs",
     "sdk",
