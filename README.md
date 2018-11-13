@@ -38,7 +38,7 @@ We assume that you used the standard signup flow. This would give you a document
 const config = {
   imageServices: {
     imgix: {
-      host: 'https://livingdocs.imgix.net',
+      host: 'https://livingdocs-images.imgix.net',
       preferWebp: true,
       backgroundImage: {
         maxWidth: 2048
