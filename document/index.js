@@ -19,7 +19,7 @@ const defaultConfig = {
 }
 
 async function getDefaultDesign () {
-  const response = await fetch('https://api.livingdocs.io/designs/living-times/0.0.14')
+  const response = await fetch('https://server.livingdocs.io/designs/living-times/0.0.14')
   return await response.json()
 }
 

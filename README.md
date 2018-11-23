@@ -65,7 +65,7 @@ This configures Livindocs' image service (the same that is used on edit.livingdo
 
 ```
 const axios = require('axios')
-const designRes = await request.get('https://api.livingdocs.io/designs/living-times/0.0.14')
+const designRes = await request.get('https://server.livingdocs.io/designs/living-times/0.0.14')
 ```
 
 This loads our magazine example design from the Livingdocs server. You can of course also use your own local design.
