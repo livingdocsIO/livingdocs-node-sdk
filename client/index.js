@@ -29,7 +29,7 @@ function validateConfig (config) {
   }
 
   if (!config.accessToken) {
-    throw new Error('API token missing')
+    throw new Error('acessToken missing')
   }
 
   if (!config.url) {
