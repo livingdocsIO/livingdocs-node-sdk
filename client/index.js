@@ -29,11 +29,11 @@ function validateConfig (config) {
   }
 
   if (!config.accessToken) {
-    throw new Error('API acessToken missing')
+    throw new Error('API accessToken missing')
   }
 
   if (!config.url) {
-    throw new Error('Host missing')
+    throw new Error('Url missing')
   }
 
   return config
