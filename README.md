@@ -1,4 +1,5 @@
 # livingdocs-sdk
+
 The official Node.js client for Livingdocs.
 This is a low-level library. If you're looking for a full-fledged use case, consider taking a look at our [magazine example](https://github.com/livingdocsIO/magazine-example)
 
@@ -17,7 +18,6 @@ You can also check the full example in runkit, but make sure to replace the API 
 
 ![Api Tokens in Livingdocs](http://livingdocs-assets.s3.amazonaws.com/sdk/api_tokens.png)
 
-
 3. Get a document
 
 ```
@@ -32,7 +32,7 @@ const publication = await liClient.getPublication({documentId: 1})
 
 We assume that you used the standard signup flow. This would give you a document with id 1. Of course you can change this id to any document in your project.
 
-4. Configure an image service
+4. OPTIONAL: Configure an image service (If you define nothing, the default settings will be used)
 
 ```
 const config = {
@@ -61,15 +61,18 @@ const config = {
 
 This configures Livindocs' image service (the same that is used on edit.livingdocs.io). You can of course also specify your own here or change the parameters for image rendering.
 
-5. Use a design
+5. OPTIONAL: Use a design (If none specified, our magazine example design will be used)
+
 ```
 const axios = require('axios')
-const designRes = await request.get('https://api.livingdocs.io/designs/living-times/0.0.11')
+const designRes = await request.get('https://server.livingdocs.io/designs/living-times/0.0.14')
 ```
 
 This loads our magazine example design from the Livingdocs server. You can of course also use your own local design.
 
 6. Create a living document
+
+_design and config are optional, content is required_
 ```
 const liSDK = require('@livingdocs/node-sdk')
 const livingdoc = liSDK.document.create({
@@ -78,7 +81,6 @@ const livingdoc = liSDK.document.create({
   config
 })
 ```
-
 
 7. Render a living document to Html
 ```
