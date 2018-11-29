@@ -1,86 +1,92 @@
 const expect = require('chai').expect
+const Client = require('../../client')
 
 const API_TOKEN = process.env.API_TOKEN
 
-const config = {
-  host: 'https://service-server-production.livingdocs.io',
-  apiToken: API_TOKEN,
-  basePath: '/api/v1'
+const defaultConfig = {
+  url: 'https://server.livingdocs.io',
+  accessToken: API_TOKEN
 }
 
-function createClient () {
-  return require('../../client')(config)
-}
+const createClient = config => new Client(config)
 
-describe('client', function () {
-  it('should be an object', function () {
-    const client = createClient()
+describe('client', () => {
+  const client = createClient(defaultConfig)
+  it('should be an object', () => {
     expect(client).to.be.an('object')
   })
 
-  it('should always create a new instance', function () {
-    const client = createClient()
-    const clientClone = createClient()
+  it('should always create a new instance', () => {
+    const clientClone = createClient(defaultConfig)
     expect(clientClone).to.not.equal(client)
   })
 
-  it('should not accept an undefined or null config', function () {
+  it('should not accept an undefined or null config', () => {
     expect(() => {
-      require('../../client')()
+      createClient()
     }).to.throw(Error, 'Config')
   })
 
-  it('should not accept an undefined or null API token', function () {
+  it('should not accept an undefined or null API token', () => {
     expect(() => {
-      require('../../client')({})
-    }).to.throw(Error, 'API token')
+      createClient({})
+    }).to.throw(Error, 'API accessToken')
   })
 
-  it('should not accept an undefined or null host', function () {
+  it('should not accept an undefined or null url', () => {
     expect(() => {
-      require('../../client')({apiToken: API_TOKEN})
-    }).to.throw(Error, 'Host')
+      createClient({accessToken: API_TOKEN})
+    }).to.throw(Error, 'Url')
   })
 
-  it('should not accept an undefined or null base path', function () {
-    expect(() => {
-      require('../../client')({apiToken: API_TOKEN, host: 'https://service-server-production.livingdocs.io'})
-    }).to.throw(Error, 'Base path')
+  it('should have a service-property', () => {
+    expect(client).to.have.property('service')
   })
 
-  describe('#channels', function () {
-    it('should be available', function () {
-      const client = createClient()
-      expect(client).to.have.property('channels')
+  describe('publication', () => {
+    it('should exist', () => {
+      expect(client.service).to.have.property('latestPublication')
     })
-
-    it('should have a list function', function () {
-      const client = createClient()
-      expect(client.channels.list).to.be.a('function')
-    })
-
-    it('should return a list of channels', async function () {
-      const client = createClient()
-      const channels = await client.channels.list()
-      expect(channels).to.deep.equal(require('./response-data/project').channels)
+    it('should not find an undefined publication', async () => {
+      const publication = await client.service.latestPublication(4963)
+      expect(publication.error).to.equal('Not Found')
+      expect(publication.status).to.equal(404)
     })
   })
-
-  describe('#publications', function () {
-    it('should be a property', function () {
-      const client = createClient()
-      expect(client).to.have.property('publications')
+  describe('publications', () => {
+    it('should exist', () => {
+      expect(client.service).to.have.property('latestPublications')
     })
-
-    it('should have a list function', function () {
-      const client = createClient()
-      expect(client.publications.list).to.be.a('function')
+    it('Should have more than 2 entries', async () => {
+      // The account(accessToken) you use, needs to have atleast 3 entries
+      const publications = await client.service.latestPublications({
+        limit: 3
+      })
+      expect(publications).to.have.length.above(2)
     })
-
-    it('should return a list of publications', async function () {
-      const client = createClient()
-      const publications = await client.publications.list('web')
-      expect(publications.length).to.equal(29)
+    it('should contain systemdata', async () => {
+      const publications = await client.service.latestPublications({
+        limit: 2
+      })
+      publications.forEach(publication => {
+        expect(publication).to.have.property('systemdata')
+      })
+    })
+    it('should contain metadata', async () => {
+      const publications = await client.service.latestPublications({
+        limit: 2
+      })
+      publications.forEach(publication => {
+        expect(publication).to.have.property('metadata')
+      })
+    })
+    it('should contain content', async () => {
+      const publications = await client.service.latestPublications({
+        limit: 2
+      })
+      publications.forEach(publication => {
+        expect(publication).to.have.property('content')
+      })
     })
   })
 })
