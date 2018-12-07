@@ -1,5 +1,6 @@
 const qs = require('qs')
 const fetch = require('node-fetch')
+const HttpsProxyAgent = require('https-proxy-agent')
 
 module.exports = (config) => {
   return {
@@ -39,9 +40,13 @@ function getQueryString (options) {
 }
 
 function getOptions (config) {
-  return {
+  const options = {
     headers: {
       'Authorization': `Bearer ${config.accessToken}`
     }
   }
+  if (config.proxy) {
+    options.agent = new HttpsProxyAgent(config.proxy)
+  }
+  return options
 }
