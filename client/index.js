@@ -9,7 +9,6 @@ module.exports = class Client {
   async getPublications (options) {
     const limit = 10
     const optionsWithDefaults = {limit, ...options}
-
     return await this.service.latestPublications(optionsWithDefaults)
   }
 
@@ -27,14 +26,11 @@ function validateConfig (config) {
   if (!config) {
     throw new Error('Config missing')
   }
-
   if (!config.accessToken) {
     throw new Error('API accessToken missing')
   }
-
   if (!config.url) {
     throw new Error('Url missing')
   }
-
   return config
 }
