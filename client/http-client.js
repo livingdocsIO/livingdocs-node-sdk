@@ -3,6 +3,11 @@ const fetch = require('node-fetch')
 const HttpsProxyAgent = require('https-proxy-agent')
 
 module.exports = (config) => {
+  // setup proxy agent in case a proxy is configured
+  if (!config.agent && config.proxy) {
+    config.agent = new HttpsProxyAgent(config.proxy)
+  }
+
   return {
     async latestPublications (options) {
       const queryString = getQueryString(options)
@@ -45,8 +50,8 @@ function getOptions (config) {
       'Authorization': `Bearer ${config.accessToken}`
     }
   }
-  if (config.proxy) {
-    options.agent = new HttpsProxyAgent(config.proxy)
+  if (config.agent) {
+    options.agent = config.agent
   }
   return options
 }
