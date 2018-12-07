@@ -3,21 +3,21 @@ const fetch = require('node-fetch')
 
 module.exports = (config) => {
   return {
-    latestPublications: async (options) => {
+    async latestPublications (options) {
       const queryString = getQueryString(options)
       const path = `documents/latestPublications${queryString}`
-      return await request(path, config)
+      return request(path, config)
     },
 
-    latestPublication: async (options) => {
+    async latestPublication (options) {
       const path = `documents/${options.documentId}/latestPublication`
-      return await request(path, config)
+      return request(path, config)
     },
 
-    menus: async (options) => {
+    async menus (options) {
       const queryString = getQueryString(options)
       const path = `menus/web${queryString}`
-      return await request(path, config)
+      return request(path, config)
     }
   }
 }
@@ -26,7 +26,7 @@ async function request (path, config) {
   const route = getRoute(path, config)
   const options = getOptions(config)
   const response = await fetch(route, options)
-  return await response.json()
+  return response.json()
 }
 
 function getRoute (path, config) {
