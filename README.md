@@ -168,8 +168,9 @@ const html = liSDK.document.render(document)
 ```js
 // get an instance of the api client
 const liClient = new liSDK.Client({
-  url: 'http://localhost:3001',
-  accessToken: 'my-awesome-token'
+  url: 'http://localhost:3001', // required
+  accessToken: 'my-awesome-token', // required
+  proxy: 'http://path.to.proxy' // optional
 })
 
 /**
