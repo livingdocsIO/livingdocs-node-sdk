@@ -11,7 +11,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "npx mocha --recursive ./test/client/document-test.js"
+    "test": "npx mocha --recursive ./test/client/client-test.js"
   },
   "dependencies": {
     "https-proxy-agent": "^2.2.1",
