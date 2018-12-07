@@ -170,7 +170,8 @@ const html = liSDK.document.render(document)
 const liClient = new liSDK.Client({
   url: 'http://localhost:3001', // required
   accessToken: 'my-awesome-token', // required
-  proxy: 'http://path.to.proxy' // optional
+  proxy: 'http://path.to.proxy', // optional, uses HttpsProxyAgent (https-proxy-agent)
+  agent: new CustomHttpsAgent() // optional, bring your own (node-fetch compatible) agent, this overrides and ignores the `proxy` config
 })
 
 /**
