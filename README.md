@@ -20,7 +20,7 @@ You can also check the full example in runkit, but make sure to replace the API 
 
 3. Get a document
 
-```
+```js
 const liSDK = require('@livingdocs/node-sdk')
 const liClient = new liSDK.Client({
   url: 'https://server.livingdocs.io',
@@ -34,7 +34,7 @@ We assume that you used the standard signup flow. This would give you a document
 
 4. OPTIONAL: Configure an image service (If you define nothing, the default settings will be used)
 
-```
+```js
 const config = {
   imageServices: {
     imgix: {
@@ -56,7 +56,6 @@ const config = {
     }
   }
 }
-
 ```
 
 This configures Livindocs' image service (the same that is used on edit.livingdocs.io). You can of course also specify your own here or change the parameters for image rendering.
@@ -74,6 +73,7 @@ This loads our magazine example design from the Livingdocs server. You can of co
 
 _design and config are optional, content is required_
 ```
+```js
 const liSDK = require('@livingdocs/node-sdk')
 const livingdoc = liSDK.document.create({
   design: designRes.data,
@@ -84,12 +84,14 @@ const livingdoc = liSDK.document.create({
 
 7. Render a living document to Html
 ```
+```js
 const liSDK = require('@livingdocs/node-sdk')
 liSDK.document.render(livingdoc)
 ```
 
 8. .. or render single components
 ```
+```js
 const liSDK = require('@livingdocs/node-sdk')
 liSDK.document.renderComponent(livingdoc.componentTree.first())
 ```
@@ -118,7 +120,7 @@ The Livingdocs API provides you with our Livingdocs JSON format. The SDK allows 
 
 Check out the livingdoc reference documentation for an intro to the livingdoc API.
 
-## API reference documentation
+## API Reference Documentation
 ```js
 const liSDK = require('@livingdocs/node-sdk')
 ```
