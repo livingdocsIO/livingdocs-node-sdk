@@ -91,6 +91,32 @@ const liSDK = require('@livingdocs/node-sdk')
 liSDK.document.renderComponent(livingdoc.componentTree.first())
 ```
 
+### Rendering a Document
+
+To sum up, we wrapped the whole procedure in a snippet below:
+
+```js
+const liSDK = require('@livingdocs/node-sdk')
+const liClient = new liSDK.Client({
+  url: 'https://server.livingdocs.io',
+  accessToken: 'my-awesome-token'
+})
+
+// fetch document from server
+const publication = await liClient.getPublication({documentId: 1})
+
+// fetch design
+const design = await liClient.getDesign({name: 'living-times', version: '0.0.14'})
+
+// create document and render it
+const livingdoc = liSDK.document.create({content: publication.content, design})
+const html = livingdoc.render() // you can also use liSDK.document.render(livingdoc)
+
+// now, do something great with your html... :)
+```
+
+Note: This snippet loads the latest magazine example design from the Livingdocs server and uses our default image service.
+
 ## Where to go from here
 
 ### I don't want to use document ids
@@ -582,31 +608,3 @@ includeDirective.addParams({foo: 'bar'})
 ###### componentContentChanged
 
 Whenever a directive is changed a `componentContentChanged` event is fired on the `componentTree` the `componentModel` is attached to. If the `componentModel` the directive belongs to is not attached to a `componentTree` no event is fired.
-
-
-## More Examples
-
-### Rendering a Document
-
-```javascript
-const config = {
-  url: 'http://localhost:3001',
-  accessToken: 'my-awesome-token'
-}
-
-const liSDK = require('@livingdocs/node-sdk')
-const liClient = new liSDK.Client(config)
-
-// fetch document from server
-const publication = await liClient.getPublication({documentId})
-const content = document.content
-
-// fetch design
-const designUrl = `${config.url}/designs/${design.name}/${design.version}`
-const designResponse = await require('node-fetch')(designUrl)
-const design = await designResponse.json()
-
-// create document and render it
-const document = liSDK.document.create({design, content})
-const html = document.render()
-```
