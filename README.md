@@ -179,6 +179,20 @@ const liClient = new liSDK.Client({
 const [menu] = await liClient.getMenus({handle: 'main'})
 
 /**
+ * @function getDesignVersions Fetches available design versions by name.
+ * @param options: { name: string } name - The given design name.
+ * @return {versions: string[]}
+ */
+const {versions} = await liClient.getDesignVersions({name: 'living-times'})
+
+/**
+ * @function getDesign Fetches a design by name and version.
+ * @param options: { name: string, version: string } - The full design descriptor.
+ * @return Design
+ */
+const design = await liClient.getDesign({name: 'living-times', version: '0.0.14'})
+
+/**
  * @function getPublications Fetches latest publications with optional filters.
  * @param filters?: { homepage?: boolean, limit?: number = 10 }
  * @return Publication[]
