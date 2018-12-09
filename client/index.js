@@ -13,12 +13,23 @@ module.exports = class Client {
   }
 
   async getPublication (options = {}) {
-    if (!options.documentId) throw new Error('required param "documentId" missing')
+    if (!options.documentId) throw requiredParamError('documentId')
     return await this.service.latestPublication(options)
   }
 
   async getMenus (options = {}) {
     return await this.service.menus(options)
+  }
+
+  async getDesignVersions (options = {}) {
+    if (!options.name) throw requiredParamError('name')
+    return await this.service.designVersions(options)
+  }
+
+  async getDesign (options = {}) {
+    if (!options.name) throw requiredParamError('name')
+    if (!options.version) throw requiredParamError('version')
+    return await this.service.design(options)
   }
 }
 
@@ -33,4 +44,8 @@ function validateConfig (config) {
     throw new Error('Url missing')
   }
   return config
+}
+
+function requiredParamError (param) {
+  return new Error(`required param "${param} missing"`)
 }
