@@ -9,34 +9,49 @@ module.exports = (config) => {
   }
 
   return {
-    async latestPublications (options) {
+    latestPublications (options) {
       const queryString = getQueryString(options)
       const path = `documents/latestPublications${queryString}`
-      return request(path, config)
+      return publicApiRequest(path, config)
     },
 
-    async latestPublication (options) {
+    latestPublication (options) {
       const path = `documents/${options.documentId}/latestPublication`
-      return request(path, config)
+      return publicApiRequest(path, config)
     },
 
-    async menus (options) {
+    menus (options) {
       const queryString = getQueryString(options)
-      const path = `menus${queryString}`
-      return request(path, config)
+      const path = `menus/web${queryString}`
+      return publicApiRequest(path, config)
+    },
+
+    designVersions (options) {
+      const path = `designs/${options.name}`
+      return regularRequest(path, config)
+    },
+
+    design (options) {
+      const path = `designs/${options.name}/${options.version}`
+      return regularRequest(path, config)
     }
   }
 }
 
-async function request (path, config) {
-  const route = getRoute(path, config)
+function publicApiRequest (path, config) {
+  const route = `${config.url}/api/v1/${path}`
+  return request(route, config)
+}
+
+function regularRequest (path, config) {
+  const route = `${config.url}/${path}`
+  return request(route, config)
+}
+
+async function request (route, config) {
   const options = getOptions(config)
   const response = await fetch(route, options)
   return response.json()
-}
-
-function getRoute (path, config) {
-  return `${config.url}/api/v1/${path}`
 }
 
 function getQueryString (options) {
