@@ -1,5 +1,4 @@
 const utils = require('./utils')
-const fetch = require('node-fetch')
 
 const defaultConfig = {
   imageServices: {
@@ -18,19 +17,8 @@ const defaultConfig = {
   }
 }
 
-async function getDefaultDesign () {
-  const response = await fetch('https://server.livingdocs.io/designs/living-times/0.0.14')
-  return await response.json()
-}
-
-const document = {
-  async create ({design, content, config}) {
-    if (!design) {
-      design = await getDefaultDesign()
-    }
-    if (!config) {
-      config = defaultConfig
-    }
+module.exports = {
+  create ({design, content, config = defaultConfig}) {
     const framework = require('../framework/livingdocs-framework')
     framework.design.resetCache()
     framework.design.load(design)
@@ -67,5 +55,3 @@ const document = {
     return doc.render()
   }
 }
-
-module.exports = document
