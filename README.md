@@ -33,62 +33,32 @@ const publication = await liClient.getPublication({documentId: 1})
 We assume that you used the standard signup flow. This would give you a document with id 1. Of course you can change this id to any document in your project.
 
 4. Get a design
+
 ```js
 const design = await liClient.getDesign({name: 'living-times', version: '0.0.14'})
 ```
 
 This loads our magazine example design from the Livingdocs server. You can of course also use your own local design.
 
-5. OPTIONAL: Configure an image service (If you define nothing, the default settings will be used)
+5. Create a living document
 
-```js
-const config = {
-  imageServices: {
-    imgix: {
-      host: 'https://livingdocs-images.imgix.net',
-      preferWebp: true,
-      backgroundImage: {
-        maxWidth: 2048
-      },
-      srcSet: {
-        defaultWidth: 1024,
-        widths: [
-          2048,
-          1024,
-          620,
-          320
-        ],
-        sizes: ['100vw']
-      }
-    }
-  }
-}
-```
-
-This configures Livindocs' image service (the same that is used on edit.livingdocs.io). You can of course also specify your own here or change the parameters for image rendering.
-
-6. Create a living document
-
-_config is optional, content and design are required_
 ```js
 const liSDK = require('@livingdocs/node-sdk')
-const livingdoc = liSDK.document.create({
-  design,
-  content: publication.content,
-  config
-})
+const livingdoc = liSDK.document.create({content: publication.content, design})
 ```
 
-7. Render a living document to HTML
+6. Render a living document to HTML
+
 ```js
 const liSDK = require('@livingdocs/node-sdk')
-liSDK.document.render(livingdoc)
+const html = liSDK.document.render(livingdoc)
 ```
 
-8. ...or render single components
+7. ...or render single components
+
 ```js
 const liSDK = require('@livingdocs/node-sdk')
-liSDK.document.renderComponent(livingdoc.componentTree.first())
+const html = liSDK.document.renderComponent(livingdoc.componentTree.first())
 ```
 
 ### Rendering a Document
@@ -150,11 +120,38 @@ const liSDK = require('@livingdocs/node-sdk')
 ```js
 /**
  * @function document.create Creates a Livingdoc instance.
- * @param options.design: serialised Design
- * @param options.content: content of a serialised livingdoc
+ * @param options.design: serialised design (required)
+ * @param options.content: content of a serialised livingdoc (required)
+ * @param options.config: livingdoc configuration (optional)
  * @return Livingdoc
  */
-const document = liSDK.document.create({design, content})
+const document = liSDK.document.create({design, content, config})
+
+// Configure an image service (If you define nothing, the default settings below will be used)
+// This configures Livindocs' image service (the same that is used on edit.livingdocs.io).
+// You can of course also specify your own here or change the parameters for image rendering.
+
+const config = {
+  imageServices: {
+    imgix: {
+      host: 'https://livingdocs-images.imgix.net',
+      preferWebp: true,
+      backgroundImage: {
+        maxWidth: 2048
+      },
+      srcSet: {
+        defaultWidth: 1024,
+        widths: [
+          2048,
+          1024,
+          620,
+          320
+        ],
+        sizes: ['100vw']
+      }
+    }
+  }
+}
 
 /**
  * @function document.visit Visits components in a ComponentTree.
