@@ -47,5 +47,5 @@ function validateConfig (config) {
 }
 
 function requiredParamError (param) {
-  return new Error(`required param "${param} missing"`)
+  return new Error(`required param "${param}" missing`)
 }
