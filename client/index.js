@@ -9,27 +9,27 @@ module.exports = class Client {
   async getPublications (options) {
     const limit = 10
     const optionsWithDefaults = {limit, ...options}
-    return await this.service.latestPublications(optionsWithDefaults)
+    return this.service.latestPublications(optionsWithDefaults)
   }
 
   async getPublication (options = {}) {
     if (!options.documentId) throw requiredParamError('documentId')
-    return await this.service.latestPublication(options)
+    return this.service.latestPublication(options)
   }
 
   async getMenus (options = {}) {
-    return await this.service.menus(options)
+    return this.service.menus(options)
   }
 
   async getDesignVersions (options = {}) {
     if (!options.name) throw requiredParamError('name')
-    return await this.service.designVersions(options)
+    return this.service.designVersions(options)
   }
 
   async getDesign (options = {}) {
     if (!options.name) throw requiredParamError('name')
     if (!options.version) throw requiredParamError('version')
-    return await this.service.design(options)
+    return this.service.design(options)
   }
 }
 
