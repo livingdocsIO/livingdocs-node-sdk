@@ -30,7 +30,7 @@ module.exports = (clientConfig) => {
 
     menus (options) {
       const queryString = getQueryString(options)
-      const path = `menus/web${queryString}`
+      const path = `menus${queryString}`
       return publicApiRequest(path, config)
     },
 
