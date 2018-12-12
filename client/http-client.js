@@ -1,12 +1,17 @@
 const qs = require('qs')
 const fetch = require('node-fetch')
-const HttpsProxyAgent = require('https-proxy-agent')
 
-module.exports = (config) => {
+module.exports = (clientConfig) => {
   // setup proxy agent in case a proxy is configured
-  if (!config.agent && config.proxy) {
-    config.agent = new HttpsProxyAgent(config.proxy)
+  let agent = null
+  if (clientConfig.agent) {
+    agent = clientConfig.agent
+  } else if (clientConfig.proxy) {
+    const HttpsProxyAgent = require('https-proxy-agent')
+    agent = new HttpsProxyAgent(clientConfig.proxy)
   }
+
+  const config = {...clientConfig, agent, proxy: undefined}
 
   return {
     latestPublications (options) {
@@ -60,13 +65,10 @@ function getQueryString (options) {
 }
 
 function getOptions (config) {
-  const options = {
+  return {
+    agent: config.agent,
     headers: {
       'Authorization': `Bearer ${config.accessToken}`
     }
   }
-  if (config.agent) {
-    options.agent = config.agent
-  }
-  return options
 }
