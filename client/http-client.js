@@ -14,7 +14,12 @@ module.exports = (clientConfig) => {
     agent = new http.Agent({keepAlive: true})
   }
 
-  const config = {...clientConfig, agent, proxy: undefined}
+  const config = {
+    ...clientConfig,
+    agent,
+    userAgent: `livingdocs-node-sdk/${require('../package.json').version} Node.js/${process.version.slice(1)}`, // eslint-disable-line max-len
+    proxy: undefined
+  }
 
   return {
     latestPublications (options) {
@@ -71,6 +76,7 @@ function getOptions (config) {
   return {
     agent: config.agent,
     headers: {
+      'User-Agent': config.userAgent,
       'Authorization': `Bearer ${config.accessToken}`
     }
   }
