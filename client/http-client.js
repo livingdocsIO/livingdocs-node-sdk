@@ -10,7 +10,7 @@ module.exports = (clientConfig) => {
     const HttpsProxyAgent = require('https-proxy-agent')
     agent = new HttpsProxyAgent(clientConfig.proxy)
   } else if (![null, false].includes(clientConfig.agent)) {
-    if (/^https/.test(clientConfig.url)) {
+    if (/^https/i.test(clientConfig.url)) {
       const https = require('https')
       agent = new https.Agent({keepAlive: true})
     } else {
