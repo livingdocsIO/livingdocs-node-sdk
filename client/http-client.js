@@ -1,5 +1,6 @@
 const qs = require('qs')
 const fetch = require('node-fetch')
+const HttpsProxyAgent = require('https-proxy-agent')
 
 module.exports = (clientConfig) => {
   // setup proxy agent in case a proxy is configured
@@ -7,8 +8,9 @@ module.exports = (clientConfig) => {
   if (clientConfig.agent) {
     agent = clientConfig.agent
   } else if (clientConfig.proxy) {
-    const HttpsProxyAgent = require('https-proxy-agent')
     agent = new HttpsProxyAgent(clientConfig.proxy)
+  } else if (process.env.HTTP_PROXY) {
+    agent = new HttpsProxyAgent(process.env.HTTP_PROXY)
   } else if (![null, false].includes(clientConfig.agent)) {
     if (/^https/i.test(clientConfig.url)) {
       const https = require('https')
