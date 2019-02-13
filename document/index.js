@@ -30,13 +30,15 @@ const defaultConfig = {
 }
 
 module.exports = {
+  // @param content {Array} Serialized componentTree content
+  // @param design {Object} Design configuration.
+  // @param config {Object} configuration that is injected to the framework
   create ({design, content, config = defaultConfig}) {
     const framework = require('../framework/livingdocs-framework')
     framework.design.resetCache()
     framework.design.load(design)
-    framework.config(config)
 
-    const doc = framework.create({content, design})
+    const doc = framework.createLivingdoc({content, design, config})
     return doc
   },
 
