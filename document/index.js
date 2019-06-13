@@ -2,6 +2,18 @@ const utils = require('./utils')
 
 const defaultConfig = {
   imageServices: {
+    liImageProxy: {
+      host: 'https://server.livingdocs.io',
+      preferWebp: true,
+      backgroundImage: {
+        maxWidth: 2048
+      },
+      srcSet: {
+        defaultWidth: 1024,
+        widths: [2048, 1024, 620, 320],
+        sizes: ['100vw']
+      }
+    },
     imgix: {
       host: 'https://livingdocs-images.imgix.net',
       preferWebp: true,
