@@ -40,6 +40,12 @@ const design = await liClient.getDesign({name: 'living-times', version: '0.0.14'
 
 This loads our magazine example design from the Livingdocs server. You can of course also use your own local design.
 
+or if you use an embed design you can get directly the project design
+
+```js
+const design = await req.liClient.getProjectDesign()
+```
+
 5. Create a living document
 
 ```js
@@ -98,12 +104,12 @@ Check out the Client API reference documentation below for the respective method
 
 ### I need my own design
 
-Currently, you can not use your own design in the Livingdocs editor.
-But you can have a local copy of our magazine design and adjust the HTML / CSS for the rendering. This means that you will write in the Livingdocs editor in our prebuilt design but render to your own custom design using the SDK.
+Currently, you can only use embedded designs in your livingdocs editor. [getting started with your own design](https://docs.livingdocs.io/livingdocs-service/getting_started)
+
+Otherwise you can use one of the given design in the editor and adapt the rendering on your side.
+For the delivery rendering you can have a local copy of our magazine design and adjust the HTML / CSS for the rendering. This means that you will write in the Livingdocs editor in our prebuilt design but render to your own custom design using the SDK.
 
 Check out the Livingdocs [magazine example frontend](https://github.com/livingdocsIO/magazine-example) on how to achieve this.
-
-Supporting custom designs in the Livingdocs editor is on our roadmap.
 
 ### I want to change the output before rendering
 
@@ -216,6 +222,13 @@ const {versions} = await liClient.getDesignVersions({name: 'living-times'})
 const design = await liClient.getDesign({name: 'living-times', version: '0.0.14'})
 
 /**
+ * @function getProjectDesign Fetches a design by name and version.
+ * @param options: { version: string } version - Optional property when not the current version should be fetched
+ * @return Design
+ */
+const design = await liClient.getProjectDesign({version: '0.0.14'})
+
+/**
  * @function getPublications Fetches latest publications with optional filters.
  * @param filters?: { homepage?: boolean, limit?: number = 10 }
  * @return Publication[]
@@ -228,6 +241,20 @@ const [homepagePublication] = await liClient.getPublications({homepage: true, li
  * @return Publication
  */
 const publication = await liClient.getPublication({documentId})
+
+/**
+ * @function search Search for publications
+ * @param options.search: string	Search term to perform a full-text search with. For exact word matches use ", e.g. 'search="Ukulele"'
+ * @param options.categories: string		Comma separated list of category ids for which documents should be found. Categories are concatenated with OR. Example: 'sport,fashion'
+ * @param options.languages: string		Comma separated list of languages for which documents should be found. Languages are concatenated with OR. Example: 'en,de'
+ * @param options.contentTypes: string		Comma separated list of content-types for which documents should be found. Content types are concatenated with OR. Example: 'article,author'
+ * @param options.fields: string		Filters which (comma separated) properties are included in the response. Defaults to 'systemdata,metadata,content' (no renditions). Use 'id' if you only want to retrieve the ids of the published documents. Useful (and faster) if you are fully synchronizing your frontend with the publication events.
+ * @param options.limit: integer		A limit for how much published documents to retrieve. Defaults to 10. Max. 100.
+ * @param options.offset: integer		An offset into the query. Useful when getting more than 100 results (pagination)} 
+ * @return Publications
+ */
+
+const publications = await liClient.search({search, categories, languages, contentTypes, fields, limit, offset})
 ```
 
 ### Livingdoc API

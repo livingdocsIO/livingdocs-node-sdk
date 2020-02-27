@@ -52,6 +52,18 @@ module.exports = (clientConfig) => {
     design (options) {
       const path = `designs/${options.name}/${options.version}`
       return regularRequest(path, config)
+    },
+
+    projectDesign (options) {
+      const version = options && `/${options.version}` ? options.version : ''
+      const path = `design${version}`
+      return publicApiRequest(path, config)
+    },
+
+    search (options) {
+      const queryString = getQueryString(options)
+      const path = `publications/search${queryString}`
+      return publicApiRequest(path, config)
     }
   }
 }
