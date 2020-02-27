@@ -31,6 +31,14 @@ module.exports = class Client {
     if (!options.version) throw requiredParamError('version')
     return this.service.design(options)
   }
+
+  async getProjectDesign () {
+    return this.service.projectDesign()
+  }
+
+  async search (options) {
+    return this.service.search(options)
+  }
 }
 
 function validateConfig (config) {
