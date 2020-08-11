@@ -241,6 +241,18 @@ const [homepagePublication] = await liClient.getPublications({homepage: true, li
  */
 const publication = await liClient.getPublication({documentId})
 
+
+/**
+ * @function getMedia Fetches a media objects by id or externalId.
+ * @param options.id: number Id from the media object
+ * @param options.ids: array of Ids from the media objects
+ * @param options.externalId: string Id from the media object from the external system
+ * @param options.systemName: string name of the external system
+ * @return Media[]
+ */
+const media = await liClient.getMedia({id, ids, externalId, systemName})
+
+
 /**
  * @function search Search for publications
  * @param options.search: string	Search term to perform a full-text search with. For exact word matches use ", e.g. 'search="Ukulele"'

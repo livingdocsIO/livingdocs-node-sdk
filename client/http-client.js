@@ -64,6 +64,17 @@ module.exports = (clientConfig) => {
       const queryString = getQueryString(options)
       const path = `publications/search${queryString}`
       return publicApiRequest(path, config)
+    },
+
+    mediaLibrary (options) {
+      let path
+      if (options && options.id) {
+        path = `mediaLibrary/${options.id}`
+      } else {
+        const queryString = getQueryString(options)
+        path = `mediaLibrary${queryString}`
+      }
+      return publicApiRequest(path, config)
     }
   }
 }

@@ -39,6 +39,10 @@ module.exports = class Client {
   async search (options) {
     return this.service.search(options)
   }
+
+  async getMedia (options) {
+    return this.service.mediaLibrary(options)
+  }
 }
 
 function validateConfig (config) {
