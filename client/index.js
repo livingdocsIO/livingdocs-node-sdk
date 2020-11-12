@@ -43,6 +43,10 @@ module.exports = class Client {
   async getMedia (options) {
     return this.service.mediaLibrary(options)
   }
+
+  async resolvePath (options = {}) {
+    return this.service.routing(options)
+  }
 }
 
 function validateConfig (config) {

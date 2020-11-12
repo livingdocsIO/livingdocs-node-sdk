@@ -1,5 +1,6 @@
 const qs = require('qs')
 const fetch = require('node-fetch')
+const axios = require('axios')
 
 module.exports = (clientConfig) => {
   // setup proxy agent in case a proxy is configured
@@ -25,6 +26,14 @@ module.exports = (clientConfig) => {
     userAgent: `livingdocs-node-sdk/${require('../package.json').version} Node.js/${process.version.slice(1)}`, // eslint-disable-line max-len
     proxy: undefined
   }
+
+  const timeout = clientConfig.requestTimeout || 10000
+  const axiosClient = axios.create({
+    baseURL: clientConfig.url,
+    headers: clientConfig.accessToken ? {Authorization: `Bearer ${clientConfig.accessToken}`} : {},
+    timeout,
+    proxy: clientConfig.proxy
+  })
 
   return {
     latestPublications (options) {
@@ -75,6 +84,20 @@ module.exports = (clientConfig) => {
         path = `mediaLibrary${queryString}`
       }
       return publicApiRequest(path, config)
+    },
+
+    async routing (options) {
+      let {path} = options
+      if (!path || path === '') throw new Error('Can not resolve undefined or empty path.')
+      if (path === '/') path = encodeURIComponent(path)
+      try {
+        const response = await axiosClient.get(`/api/v1/routing/resolve?path=${path}`, {})
+        return response.data
+      } catch (e) {
+        // in future the LI REST API itself should have this logic
+        if (e.response.status === 404) return []
+        else return e.response
+      }
     }
   }
 }
