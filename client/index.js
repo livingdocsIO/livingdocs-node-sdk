@@ -32,8 +32,8 @@ module.exports = class Client {
     return this.service.design(options)
   }
 
-  async getProjectDesign () {
-    return this.service.projectDesign()
+  async getProjectDesign (options = {}) {
+    return this.service.projectDesign(options)
   }
 
   async search (options) {
