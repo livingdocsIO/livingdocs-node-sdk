@@ -43,6 +43,12 @@ describe('client', function () {
     expect(client).to.have.property('service')
   })
 
+  describe('project design', function () {
+    it('should exist', function () {
+      expect(client.service).to.have.property('projectDesign')
+    })
+  })
+
   describe('publication', function () {
     it('should exist', function () {
       expect(client.service).to.have.property('latestPublication')
