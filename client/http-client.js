@@ -64,8 +64,8 @@ module.exports = (clientConfig) => {
     },
 
     projectDesign (options) {
-      const version = options && `/${options.version}` ? options.version : ''
-      const path = `design${version}`
+      const version = options && options.version
+      const path = `design${version ? `/${version}` : ''}`
       return publicApiRequest(path, config)
     },
 
