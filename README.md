@@ -5,6 +5,10 @@ This is a low-level library. If you're looking for a full-fledged use case, cons
 
 Also, check out our service documentation at https://developers.livingdocs.io
 
+# Prerequisites
+
+- minimum node.js version: 12
+
 ## Getting started
 
 We assume, you already have an account on https://edit.livingdocs.io
