@@ -3,6 +3,9 @@
   "version": "0.0.0-placeholder",
   "description": "Livingdocs SDK",
   "author": "Livingdocs <dev@livingdocs.io>",
+  "engines": {
+    "node": ">=12"
+  },
   "keywords": [
     "livingdocs",
     "sdk",
