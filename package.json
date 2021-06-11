@@ -17,6 +17,7 @@
     "test": "mocha --recursive ./test/client/client-test.js"
   },
   "dependencies": {
+    "@livingdocs/framework-sdk-prebuild": "^19.4.5",
     "axios": "^0.21.0",
     "https-proxy-agent": "^2.2.1",
     "lodash": "^4.17.4",
@@ -29,5 +30,9 @@
     "mocha": "^5.2.0"
   },
   "license": "MIT",
-  "homepage": "https://github.com/livingdocsIO/livingdocs-node-sdk#readme"
+  "homepage": "https://github.com/livingdocsIO/livingdocs-node-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/livingdocsIO/livingdocs-node-sdk.git"
+  }
 }
