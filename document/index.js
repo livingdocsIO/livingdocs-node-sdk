@@ -34,7 +34,7 @@ module.exports = {
   // @param design {Object} Design configuration.
   // @param config {Object} configuration that is injected to the framework
   create ({design, content, config = defaultConfig}) {
-    const framework = require('../framework/livingdocs-framework')
+    const framework = require('@livingdocs/framework-sdk-prebuild')
     framework.design.resetCache()
     framework.design.load(design)
 
@@ -60,7 +60,7 @@ module.exports = {
   },
 
   renderComponent (component) {
-    const framework = require('../framework/livingdocs-framework')
+    const framework = require('@livingdocs/framework-sdk-prebuild')
     const componentRenderer = framework.Livingdoc.api.ComponentRenderer
     return componentRenderer.renderComponent(component)
   },
