@@ -1,4 +1,3 @@
-const expect = require('chai').expect
 const Client = require('../../client')
 
 const API_TOKEN = 'faketoken'
