@@ -13,16 +13,18 @@ steps:
       from_secret: GH_TOKEN
 
 - name: install
-  image: node:8-alpine
+  image: livingdocs/node:12.3
   commands: ["npm install"]
 
-- name: test-node-8
-  image: node:8-alpine
-  commands: ["npm run test -s"]
+- name: test-node-12
+  image: livingdocs/node:12.3
+  commands: ["npm run test"]
+  depends_on: [install]
 
-- name: test-node-10
-  image: node:10-alpine
-  commands: ["npm run test -s"]
+- name: test-node-14
+  image: livingdocs/node:14.3
+  commands: ["npm run test"]
+  depends_on: [install]
 
 - name: publish
   image: livingdocs/semantic-release:v1.0.0
@@ -37,6 +39,6 @@ trigger:
 
 ---
 kind: signature
-hmac: 60e156ae5455e1d83263869e9a026769b5be2eaa673582d940a20bb8e5a9b278
+hmac: 0466f46a5e2904b562ae10ae950b7883622a595297f975a69934e112ebb64a42
 
 ...

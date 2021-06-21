@@ -1,0 +1,2 @@
+reporter: dot
+require: test/lib/node_globals.js
