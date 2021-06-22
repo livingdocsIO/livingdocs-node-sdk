@@ -7,7 +7,7 @@ Also, check out our service documentation at https://developers.livingdocs.io
 
 # Prerequisites
 
-- minimum node.js version: 12
+- minimum Node version: 12
 
 ## Getting started
 
@@ -265,7 +265,7 @@ const media = await liClient.getMedia({id, ids, externalId, systemName})
  * @param options.contentTypes: string		Comma separated list of content-types for which documents should be found. Content types are concatenated with OR. Example: 'article,author'
  * @param options.fields: string		Filters which (comma separated) properties are included in the response. Defaults to 'systemdata,metadata,content' (no renditions). Use 'id' if you only want to retrieve the ids of the published documents. Useful (and faster) if you are fully synchronizing your frontend with the publication events.
  * @param options.limit: integer		A limit for how much published documents to retrieve. Defaults to 10. Max. 100.
- * @param options.offset: integer		An offset into the query. Useful when getting more than 100 results (pagination)} 
+ * @param options.offset: integer		An offset into the query. Useful when getting more than 100 results (pagination)}
  * @return Publications
  */
 
