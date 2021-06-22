@@ -63,8 +63,7 @@ const livingdoc = liSDK.document.create({content: publication.content, design})
 6. Render a living document to HTML
 
 ```js
-const liSDK = require('@livingdocs/node-sdk')
-const html = liSDK.document.render(livingdoc)
+livingdoc.render()
 ```
 
 7. ...or render single components
