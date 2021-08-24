@@ -7,7 +7,8 @@ Also, check out our service documentation at https://developers.livingdocs.io
 
 # Prerequisites
 
-- minimum Node version: 12
+- Minimum Node version: 14
+- Read the [Changelog](./CHANGELOG.md) to get up to date
 
 ## Getting started
 
