@@ -1,5 +1,6 @@
 ---
 kind: pipeline
+type: docker
 name: default
 
 clone:
@@ -12,19 +13,23 @@ steps:
     GH_TOKEN:
       from_secret: GH_TOKEN
 
-- name: install
-  image: livingdocs/node:12.3
+- name: install-node-14
+  image: livingdocs/node:14
   commands: ["npm install"]
 
-- name: test-node-12
-  image: livingdocs/node:12.3
-  commands: ["npm run test"]
-  depends_on: [install]
-
 - name: test-node-14
-  image: livingdocs/node:14.3
+  image: livingdocs/node:14
   commands: ["npm run test"]
-  depends_on: [install]
+  depends_on: [install-node-14]
+
+- name: install-node-16
+  image: livingdocs/node:16
+  commands: ["npm install"]
+
+- name: test-node-16
+  image: livingdocs/node:16
+  commands: ["npm run test"]
+  depends_on: [install-node-16]
 
 - name: publish
   image: livingdocs/semantic-release:v1.0.0
@@ -39,6 +44,6 @@ trigger:
 
 ---
 kind: signature
-hmac: 0466f46a5e2904b562ae10ae950b7883622a595297f975a69934e112ebb64a42
+hmac: 8bb7b5727ce4b4bdbd21f46dabfa8d0fc63c7a6868a45288d1c3257095af5f65
 
 ...
