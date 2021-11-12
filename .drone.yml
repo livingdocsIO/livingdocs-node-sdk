@@ -32,7 +32,7 @@ steps:
   depends_on: [install-node-16]
 
 - name: publish
-  image: livingdocs/semantic-release:v1.0.0
+  image: livingdocs/semantic-release:v1.2.2
   environment:
     GH_TOKEN:
       from_secret: GH_TOKEN
@@ -44,6 +44,6 @@ trigger:
 
 ---
 kind: signature
-hmac: 8bb7b5727ce4b4bdbd21f46dabfa8d0fc63c7a6868a45288d1c3257095af5f65
+hmac: 02e1a6b0de55e1aaa3f1c1290f8684cd7191e98c156646578199b7d7a5029702
 
 ...
